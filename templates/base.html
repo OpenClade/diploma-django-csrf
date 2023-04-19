@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+        <!-- Any additional stylesheets, scripts, or meta tags can be added here -->
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+            <!-- The content for each child template will be inserted here -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 My App</p>
+    </footer>
+    {% block scripts %}
+        <!-- Any additional JavaScript files or scripts can be added here -->
+    {% endblock %}
+</body>
+</html>
