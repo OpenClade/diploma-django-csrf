@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
 ]
+"""
+/home/clevtech/Documents/contest/diploma/csrf/login_attack.html
+"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
