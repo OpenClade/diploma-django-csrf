@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from .forms import RegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout
-
+from .models import Post, Image, UserProfile
 
 def registration_view(request):
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def login_view(request):
             messages.info(request, 'Username or password is incorrect')
     return render(request, 'registration/login.html')
 
- 
+
 def logout_view(request):
     logout(request)
     return redirect('login')
@@ -40,3 +40,20 @@ def logout_view(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def post_create(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        user_creator = request.user
+        post = Post.objects.create(
+            title=title,
+            description=description,
+            user_creator=user_creator
+        )
+        post.save()
+        return redirect('home')
+    return render(request, 'post_create.html')
+    
+
