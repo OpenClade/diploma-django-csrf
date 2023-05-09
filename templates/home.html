@@ -25,9 +25,9 @@
 </div>
 
 {% if user.is_authenticated %}
-  <p>You are logged in as {{ user.username }}.</p>
+  <p class="logged-in-message">You are logged in as <span class="username">{{ user.username }}</span>.</p>
 {% else %}
-  <p>You are not logged in.</p>
+  <p class="not-logged-in-message">You are not logged in. <a href="{% url 'login' %}" class="login-link">Log in</a> or <a href="{% url 'register' %}" class="register-link">register</a> to continue.</p>
 {% endif %}
 
 {% if request.session.has_csrf_token %}

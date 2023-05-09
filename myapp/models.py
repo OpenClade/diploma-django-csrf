@@ -11,13 +11,16 @@ class TimeStamp(models.Model):
         abstract = True
 
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=150, blank=True)
+
     # Add any additional fields you want to store for the user
 
     def __repr__(self):
         return f'{self.user}'
+
 
 class Image(TimeStamp):
     image = models.ImageField(upload_to='images/')
@@ -25,12 +28,13 @@ class Image(TimeStamp):
     def __repr__(self):
         return f'{self.image}'
 
+
 class Post(TimeStamp):
     user_creator = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
     images = models.ManyToManyField(Image, blank=True)
-    date_created = models.DateTimeField(auto_now_add=True)    
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __repr__(self):
         return f'{self.title}'

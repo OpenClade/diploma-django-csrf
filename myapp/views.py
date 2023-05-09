@@ -4,6 +4,10 @@ from .forms import RegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from .models import Post, Image, UserProfile
+from django.contrib.auth.models import User
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 
 def registration_view(request):
     if request.method == 'POST':
@@ -55,5 +59,27 @@ def post_create(request):
         post.save()
         return redirect('home')
     return render(request, 'post_create.html')
-    
 
+
+def search_users(request):
+    search_name = request.GET.get('search_name', '').strip()
+
+    if search_name:
+        users = User.objects.filter(
+            Q(username__icontains=search_name) |
+            Q(email__icontains=search_name)
+        )
+    else:
+        users = []
+
+    context = {
+        'search_name': search_name,
+        'users': users,
+    }
+
+    return render(request, 'search_users.html', context)
+
+
+@login_required
+def my_profile(request):
+    return render(request, 'my_profile.html')

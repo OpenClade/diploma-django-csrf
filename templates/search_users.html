@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Users{% endblock %}
+
+{% block content %}
+    <h1>Search Users</h1>
+    <form method="GET" action="{% url 'search_users' %}">
+        <label for="search_name">User Name:</label>
+        <input type="text" id="search_name" name="search_name" placeholder="Search by name" value="{{ search_name }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if users %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No users found with the given name.</p>
+    {% endif %}
+{% endblock %}
