@@ -205,3 +205,56 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #555;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.logged-in-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .username {
+    color: blue;
+  }
+  
+  .not-logged-in-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .login-link,
+  .register-link {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link:hover,
+  .register-link:hover {
+    text-decoration: underline;
+  }
