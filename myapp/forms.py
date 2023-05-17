@@ -6,6 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['csrfmiddlewaretoken'].widget = forms.HiddenInput()
+    
     class Meta:
         model = User
         fields = (
@@ -21,3 +25,4 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+ 

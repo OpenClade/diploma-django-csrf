@@ -7,8 +7,10 @@ from .models import Post, Image, UserProfile
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 
 
+@csrf_protect
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -17,6 +19,7 @@ def registration_view(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            # if user is not authenticated, then login
             login(request, user)
             return redirect('home')
     else:
