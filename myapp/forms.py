@@ -8,8 +8,8 @@ class RegistrationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['csrfmiddlewaretoken'].widget = forms.HiddenInput()
-    
+        print(self.fields)
+        
     class Meta:
         model = User
         fields = (

@@ -9,8 +9,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
-
-@csrf_protect
+ 
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
