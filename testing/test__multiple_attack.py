@@ -12,7 +12,13 @@ users = [
 
 # Список URL-адресов для тестирования
 urls = [
-    "https://cleverest.tech/wp-admin/",
+    "http://localhost:8000/login/",
+    "http://localhost:8000/register/",
+    "http://localhost:8000/profile/",
+    "http://localhost:8000/logout/",
+    "http://localhost:8000/change-password/",
+    "http://localhost:8000/reset-password/",
+    "http://localhost:8000/confirm-email/",
 ]
 
 # Создание CSV-файла для записи статистики
